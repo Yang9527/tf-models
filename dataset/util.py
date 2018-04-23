@@ -1,7 +1,6 @@
 def download(url, filename):
     import sys
-    version = sys.version_info
-    if version > (2, 7):
+    if sys.version_info.major == 3:
         from urllib.request import urlopen
     else:
         from urllib2 import urlopen
