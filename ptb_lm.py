@@ -14,10 +14,10 @@ ptb_data = ptb.PTB(data_dir)
 
 args = {
   "vocab_size" : len(ptb_data.word2id),
-  "batch_size" : 128,
-  "sequence_size" : 20,
-  "num_units" : 100,
-  "embed_size" : 50
+  "batch_size" : 32,
+  "sequence_size" : 35,
+  "num_units" : 1500,
+  "embed_size" : 1500
 }
 
 from rnnlm import rnnlm
@@ -32,5 +32,5 @@ estimator = tf.estimator.Estimator(
 
 estimator.train(
   input_fn=lambda : input_fn.input_fn(ptb_data.train, args["sequence_size"], args["batch_size"]),
-  steps = 200
+  steps = 5000
 )
