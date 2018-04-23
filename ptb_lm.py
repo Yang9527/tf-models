@@ -27,7 +27,7 @@ model = rnnlm.RNNLM(**args)
 import tensorflow as tf
 estimator = tf.estimator.Estimator(
   model_fn=model.model_fn,
-  model_dir=join(data_dir, "model")
+  model_dir=os.path.join(data_dir, "model")
 )
 
 estimator.train(
