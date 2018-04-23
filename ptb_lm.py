@@ -12,9 +12,25 @@ from dataset import ptb
 
 ptb_data = ptb.PTB(data_dir)
 
-for k, v in list(ptb_data.word2id.items())[:10]:
-    print(k, v)
+args = {
+  "vocab_size" : len(ptb_data.word2id),
+  "batch_size" : 128,
+  "sequence_size" : 20,
+  "num_units" : 100,
+  "embed_size" : 50
+}
 
-print(ptb_data.train[:100])
-print(ptb_data.test[:100])
-print(ptb_data.valid[:100])
+from rnnlm import rnnlm
+from rnnlm import input_fn
+model = rnnlm.RNNLM(**args)
+
+import tensorflow as tf
+estimator = tf.estimator.Estimator(
+  model_fn=model.model_fn,
+  model_dir=data_dir
+)
+
+estimator.train(
+  input_fn=lambda : input_fn.input_fn(ptb_data.train, args["sequence_size"], args["batch_size"]),
+  steps = 200
+)
