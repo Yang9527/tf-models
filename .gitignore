@@ -155,3 +155,4 @@ fabric.properties
 corpora/
 vcs.xml
 .idea/
+cs224n/*/data/
