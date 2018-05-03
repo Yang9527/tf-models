@@ -9,12 +9,11 @@ class FastText(object):
             vocab_size -- vocabulary size of the embedding lookup table
             embed_size -- the dimension of the embedding
             loss_type -- nce or softmax
-            
-            
-            
+            save_summary_steps -- 
+            save_summary_dir --
+            lr -- learning rate
         """
         self.config = config
-
 
     def model_fn(self, features, labels, mode):
         """
