@@ -25,6 +25,7 @@ from rnnlm import input_fn
 model = rnnlm.RNNLM(**args)
 
 import tensorflow as tf
+tf.logging.set_verbosity(tf.logging.INFO)
 estimator = tf.estimator.Estimator(
   model_fn=model.model_fn,
   model_dir=data_dir
@@ -32,5 +33,5 @@ estimator = tf.estimator.Estimator(
 
 estimator.train(
   input_fn=lambda : input_fn.input_fn(ptb_data.train, args["sequence_size"], args["batch_size"]),
-  steps = 200
+  steps = 5000
 )
